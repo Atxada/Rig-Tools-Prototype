@@ -1,4 +1,3 @@
-# Rig-Tools-Prototype
 ## Rigging tools prototype for autodesk maya
 
 **Locate the package folder "eyeRigTool" inside maya environment variable**
