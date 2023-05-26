@@ -1,0 +1,103 @@
+    # DEBUG
+    follow_grp =  None
+    fk_ctrl = None
+    follow_grp_parent = None
+    fk_ctrl_parent = None
+    follow_attr = None
+    
+    # DEBUG    
+    def debug_UI(self,width,height):
+    # Check if the window is present
+        if cmds.window("DebugUI",ex=1): cmds.deleteUI("DebugUI")
+
+        # Create the window
+        window = cmds.window("DebugUI", t="DEBUG", w=200, h =200, mnb=1, mxb=1)
+        mainLayout = cmds.formLayout(nd=100)
+
+        #All the widget
+        # Text
+
+        # TextField
+        text_field_1 = cmds.textField("text_field_1",h=33, w=370,fi="",ed=0,bgc=(0.2,0.2,0.2))
+        text_field_2 = cmds.textField("text_field_2",h=33, w=370,fi="",ed=0,bgc=(0.2,0.2,0.2))
+        text_field_3 = cmds.textField("text_field_3",h=33, w=370,fi="",ed=0,bgc=(0.2,0.2,0.2))
+        text_field_4 = cmds.textField("text_field_4",h=33, w=370,fi="",ed=0,bgc=(0.2,0.2,0.2))
+        text_field_5 = cmds.textField("text_field_5",h=33, w=370,fi="",ed=0,bgc=(0.2,0.2,0.2))
+        
+        # Button
+        generateButton = cmds.button(l="Generate!",c=self.generate_set_follow_for_fk,h=40,w=170)
+        Button_1 = cmds.button(l="Follow_Grp",c=self.print_text1,h=30,w=120)
+        Button_2 = cmds.button(l="FK_Ctrl",c=self.print_text2,h=30,w=120)
+        Button_3 = cmds.button(l="Follow_Grp_Parent",c=self.print_text3,h=30,w=120)
+        Button_4 = cmds.button(l="FK_Ctrl_Parent",c=self.print_text4,h=30,w=120)
+        Button_5 = cmds.button(l="Follow_Attr",c=self.print_text5,h=30,w=120)
+            
+        # CheckBoxes
+    
+        # adjust layout
+
+        cmds.formLayout (mainLayout,e=1,
+
+        attachForm = [
+        (Button_1,"left",20),
+        (Button_1,"top",12),
+        (Button_2,"left",20),
+        (Button_2,"top",52),
+        (Button_3,"left",20),
+        (Button_3,"top",92),
+        (Button_4,"left",20),
+        (Button_4,"top",132),
+        (Button_5,"left",20),
+        (Button_5,"top",172),
+        (text_field_1,"top",10),
+        (text_field_1,"left",150),
+        (text_field_2,"top",50),
+        (text_field_2,"left",150),
+        (text_field_3,"top",90),
+        (text_field_3,"left",150),
+        (text_field_4,"top",130),
+        (text_field_4,"left",150),
+        (text_field_5,"top",170),
+        (text_field_5,"left",150),
+        (generateButton,"left",width/2-85),
+        (generateButton,"top",225),
+        ],
+        )
+                
+        cmds.showWindow(window)
+        cmds.window('DebugUI', e=True, wh=(width, height),s=0)
+    
+    def print_text1(self, *args):
+        selection = cmds.ls(sl=1)
+        self.follow_grp = selection
+        cmds.textField("text_field_1",e=1,fi=str(selection))
+
+    def print_text2(self, *args):
+        selection = cmds.ls(sl=1)
+        self.fk_ctrl = selection
+        cmds.textField("text_field_2",e=1,fi=str(selection))
+        
+    def print_text3(self, *args):
+        selection = cmds.ls(sl=1)
+        self.follow_grp_parent = selection
+        cmds.textField("text_field_3",e=1,fi=str(selection))
+        
+    def print_text4(self, *args):
+        selection = cmds.ls(sl=1)
+        self.fk_ctrl_parent = selection
+        cmds.textField("text_field_4",e=1,fi=str(selection))
+        
+    def print_text5(self, *args):
+        selection = cmds.ls(sl=1)[0] + "." + cmds.channelBox('mainChannelBox', q=True,selectedMainAttributes=True)[0]
+        self.follow_attr = selection
+        cmds.textField("text_field_5",e=1,fi=selection)
+    
+    def generate_set_follow_for_fk(self, *args):
+        test = RigSystem()
+        test.set_follow_for_fk(
+            self.follow_grp,
+            self.fk_ctrl,
+            self.follow_grp_parent,
+            self.fk_ctrl_parent,
+            self.follow_attr
+        )
