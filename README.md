@@ -8,7 +8,7 @@
 
 Write the following code in the maya script editor\
 "
-from eyeRigTool import ui
-window = ui.UI()
-window.debug_UI(300,200)
+from eyeRigTool import ui\
+window = ui.UI()\
+window.debug_UI(300,200)\
 "
