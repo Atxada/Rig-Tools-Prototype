@@ -5,7 +5,7 @@
 >Linux	$HOME/maya/<version_number> \
 >macOS	$HOME/Library/Preferences/Autodesk/maya/<version_number> 
 
-Write the following code in the maya script editor\
+Write the following code in the maya script editor
 ```
 from eyeRigTool import ui
 window = ui.UI()
