@@ -1,4 +1,5 @@
-## Rigging tools prototype for autodesk maya
+## Face Rigging Tools for autodesk maya
+### Beta version
 
 **Locate the package folder "eyeRigTool" inside maya environment variable**
 >Windows	C:\Users\<Username>\Documents\maya\<version_number> \
