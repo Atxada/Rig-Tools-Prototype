@@ -1,7 +1,7 @@
 ### Face Rigging Tools for autodesk maya (Beta version)
 
 <span style="color:red">
-### Face Rigging Tools for autodesk maya (Beta version)
+Face Rigging Tools for autodesk maya (Beta version)
 </span>
 
 **Locate the package folder "eyeRigTool" inside maya environment variable**
